@@ -42,7 +42,14 @@ class idolController extends Controller
     {
         try {
             $idol = idol::find($id);
-            $idol->update($request->all());
+            $idol->name = $request->name;
+            $idol->last_name = $request->last_name;
+            $idol->country = $request->country;
+            $idol->age = $request->age;
+            $idol->country = $request->country;
+            $idol->profession = $request->profession;
+            $idol->description = $request->description;
+            $idol->price = $request->price;
             $idol->save();
             return response()->json(['status' => 'Success'], 200);
            } catch (\Throwable $th) {

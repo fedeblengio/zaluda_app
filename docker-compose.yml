@@ -3,7 +3,6 @@ services:
   mariadb:
     image: 'bitnami/mariadb:10.1'
     container_name: laravel_mysql
-    restart: unless-stopped
     ports:
       - "3308:3306"
     environment:

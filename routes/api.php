@@ -24,10 +24,5 @@ Route::post('/idols','App\Http\Controllers\idolController@store');
 Route::put('/idols/{id}','App\Http\Controllers\idolController@update');
 Route::delete('/idols/{id}','App\Http\Controllers\idolController@destroy');
 
-Route::get('/test', function (){
-    $test = idol::all();
-    return $test;
-});
-
 
 
