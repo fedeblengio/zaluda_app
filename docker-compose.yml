@@ -1,0 +1,33 @@
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.1'
+    container_name: laravel_mysql
+    restart: unless-stopped
+    ports:
+      - "3308:3306"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=zaluda
+      - MARIADB_DATABASE=zaluda
+      - MARIADB_PASSWORD=zaluda
+    volumes:
+      - ./mysql-docker:/var/lib/mysql
+  app:
+    restart: unless-stopped
+    container_name: laravel_app
+    tty: true
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=zaluda
+      - DB_DATABASE=zaluda
+      - DB_PASSWORD=zaluda
+    depends_on:
+      - mariadb
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/var/www/html
