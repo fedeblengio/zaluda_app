@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\idol;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +19,10 @@ use App\Models\idol;
 */
 
 Route::get('/idols','App\Http\Controllers\idolController@index');
+Route::get('/idols/{id}','App\Http\Controllers\idolController@show');
+Route::post('/idols','App\Http\Controllers\idolController@store');
+Route::put('/idols/{id}','App\Http\Controllers\idolController@update');
+Route::delete('/idols/{id}','App\Http\Controllers\idolController@destroy');
 
 Route::get('/test', function (){
     $test = idol::all();
