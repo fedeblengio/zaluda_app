@@ -76,15 +76,6 @@ class idolController extends Controller
 
     public function showImage($name)
     {
-   
-
         return response()->file(storage_path('/app/public/img/' . $name . '.jpg'), ['Content-Type' => 'image/jpg']);
-    }
-    public function returnImageJson()
-    {
-        $photo = DB::table('idols')->select('photo')->get();
-
-
-        return response()->json($photo);
     }
 }

@@ -20,7 +20,6 @@ use App\Models\idol;
 
 Route::get('/idols','App\Http\Controllers\idolController@index');
 Route::get('/idols/{id}','App\Http\Controllers\idolController@show');
-Route::get('/img','App\Http\Controllers\idolController@returnImageJson');
 Route::post('/idols','App\Http\Controllers\idolController@store');
 Route::put('/idols/{id}','App\Http\Controllers\idolController@update');
 Route::delete('/idols/{id}','App\Http\Controllers\idolController@destroy');
