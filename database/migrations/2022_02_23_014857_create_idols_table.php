@@ -22,6 +22,7 @@ class CreateIdolsTable extends Migration
             $table->string('profession');
             $table->string('description');
             $table->integer('price');
+            $table->string('photo');
             $table->timestamps();
         });
     }
