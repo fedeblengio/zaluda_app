@@ -25,4 +25,4 @@ Route::put('/idols/{id}','App\Http\Controllers\idolController@update');
 Route::delete('/idols/{id}','App\Http\Controllers\idolController@destroy');
 
 
-
+Route::post('/users','App\Http\Controllers\user_google@store');
