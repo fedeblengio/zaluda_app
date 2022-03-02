@@ -14,7 +14,7 @@ class CreateGoogleIdsTable extends Migration
     public function up()
     {
         Schema::create('google_ids', function (Blueprint $table) {
-            $table->string('id_google');
+            $table->string('id_google')->primary();
             $table->string('full_name');
             $table->string('mail');
             $table->timestamps();
