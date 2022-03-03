@@ -26,3 +26,7 @@ Route::delete('/idols/{id}','App\Http\Controllers\idolController@destroy');
 
 
 Route::post('/users','App\Http\Controllers\user_google@store');
+
+Route::post('/requests','App\Http\Controllers\logicController@requestsStore');
+Route::post('/response','App\Http\Controllers\logicController@responseStore');
+Route::post('/sale','App\Http\Controllers\logicController@saleStore');
