@@ -5,8 +5,7 @@ os: linux
 services:
   - docker
 before_script:
-  - cp .env.example .env
+  - cp .env.test .env
   - composer install
-  - docker-compose up
 script:
   - php artisan test --filter=ZaludaTest
