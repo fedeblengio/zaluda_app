@@ -6,14 +6,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
 use Tests\TestCase;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\idol;
 use App\Http\Controllers\idolController;
+
 
 class ZaludaTest extends TestCase
 {
    
-
     public function test_idols_create()
     {
         $request = new Request([
@@ -24,7 +24,6 @@ class ZaludaTest extends TestCase
             'profession'=> 'Profesor',
             'description'=> 'Profesor',
             'price'=> 2000
-          
         ]);
 
         $user = new idolController();
@@ -33,30 +32,30 @@ class ZaludaTest extends TestCase
         var_dump($output);
         $this->assertEquals($output , '{"headers":{},"original":{"status":"Success"},"exception":null}');
     }
+ 
 
-
-    public function test_idols_update()
-    {
-        
+   public function test_idols_update()
+    {    
         $request = new Request([
             'name'   => 'FedeTest',
             'last_name' => 'FedeTest',
-            'country'=> 'uy',
+            'country'=> 'ar',
             'age'=> 222,
             'profession'=> 'Profesor',
             'description'=> 'Profesor',
             'price'=> 2000,
             "photo"=> "FedeTest-FedeTest"
         ]);
+        $id = DB::select("select id from idols where name='FedeTest'");
 
         $user = new idolController();
-        $res = $user->update($request, 17);
+        $res = $user->update($request, $id[0]->id);
         $output = json_encode($res);
         var_dump($output);
         $this->assertEquals($output , '{"headers":{},"original":{"status":"Success"},"exception":null}');
-    }  
+    }   
 
-    public function test_idols_show_all()
+     public function test_idols_show_all()
     {
         $response = $this->get('/api/idols');
         $response->assertStatus(200);
@@ -71,9 +70,10 @@ class ZaludaTest extends TestCase
     {
     
         $user = new idolController();
-        $res = $user->destroy(9);
+        $id = DB::select("select id from idols where name='FedeTest'");
+        $res = $user->destroy($id[0]->id);
         $output = json_encode($res);
         var_dump($output);
         $this->assertEquals($output , '{"headers":{},"original":{"status":"Success"},"exception":null}');
-    } 
+    }   
 }
