@@ -78,4 +78,8 @@ class idolController extends Controller
     {
         return response()->file(storage_path('/app/public/img/' . $name . '.jpg'), ['Content-Type' => 'image/jpg']);
     }
+    public function showVideo($name)
+    {
+        return response()->file(storage_path('/app/public/video/' . $name . '.mp4'), ['Content-Type' => 'video/mp4']);
+    }
 }

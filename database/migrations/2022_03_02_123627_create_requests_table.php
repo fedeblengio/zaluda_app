@@ -17,7 +17,7 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_idols');
             $table->string('id_google');
-            $table->string('message');
+            $table->string('message', "500");
             $table->timestamps();
             
         });

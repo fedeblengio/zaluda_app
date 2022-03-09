@@ -13,3 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/img/{name}','App\Http\Controllers\idolController@showImage');
+
+Route::get('/video/{name}','App\Http\Controllers\idolController@showVideo');

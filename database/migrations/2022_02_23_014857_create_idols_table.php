@@ -20,7 +20,7 @@ class CreateIdolsTable extends Migration
             $table->string('country');
             $table->integer('age');
             $table->string('profession');
-            $table->string('description');
+            $table->string('description', "500");
             $table->integer('price');
             $table->string('photo');
             $table->timestamps();

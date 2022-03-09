@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\requests;
 use App\Models\response;
 use App\Models\sales;
-
+use Illuminate\Support\Facades\DB;
 class logicController extends Controller
 {
     public function requestsStore(Request $request)
@@ -50,4 +50,21 @@ class logicController extends Controller
             return response()->json(['status' => 'Bad Request'], 400);
         }  
     }
+
+    public function showResponse(Request $request)
+    {
+      
+       $response_link_yt = DB::select("select link_yt from responses;");
+
+       $request_id_idols = DB::select("select id_idols from requests;");
+       $request_goolge = DB::select("select id_google from requests;");
+       $array = [
+        "link_yt" => $response_link_yt,
+        "id_idols" => $request_id_idols,
+        "id_google" => $request_goolge,
+    ];
+    
+      
+       return response()->json($array);
+    } 
 }

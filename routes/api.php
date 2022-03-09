@@ -30,3 +30,5 @@ Route::post('/users','App\Http\Controllers\user_google@store');
 Route::post('/requests','App\Http\Controllers\logicController@requestsStore');
 Route::post('/response','App\Http\Controllers\logicController@responseStore');
 Route::post('/sale','App\Http\Controllers\logicController@saleStore');
+
+Route::get('/test','App\Http\Controllers\logicController@showResponse');
