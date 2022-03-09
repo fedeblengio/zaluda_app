@@ -7,5 +7,6 @@ services:
 before_script:
   - cp .env.example .env
   - composer install
+  - docker-compose up
 script:
   - php artisan test --filter=ZaludaTest
