@@ -16,12 +16,13 @@ class CreateResponsesTable extends Migration
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_requests');
-            $table->string('link_yt');
+            $table->string('id_google');
+            $table->string('video_name');
             $table->timestamps();
         });
         Schema::table('responses', function(Blueprint $table) {
             $table->foreign('id_requests')->references('id')->on('requests');
-         
+            $table->foreign('id_google')->references('id_google')->on('google_ids');
         }); 
     }
 

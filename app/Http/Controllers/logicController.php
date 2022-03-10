@@ -27,7 +27,8 @@ class logicController extends Controller
         try {
                 $response = new response;
                 $response->id_requests = $request->id_requests;
-                $response->link_yt = $request->link_yt;
+                $response->id_google = $request->id_google;
+                $response->video_name = $request->video_name;
                 $response->save();
                 return response()->json(['status' => 'Success'], 200);
                    
@@ -51,20 +52,18 @@ class logicController extends Controller
         }  
     }
 
-    public function showResponse(Request $request)
-    {
-      
-       $response_link_yt = DB::select("select link_yt from responses;");
+  
 
-       $request_id_idols = DB::select("select id_idols from requests;");
-       $request_goolge = DB::select("select id_google from requests;");
-       $array = [
-        "link_yt" => $response_link_yt,
-        "id_idols" => $request_id_idols,
-        "id_google" => $request_goolge,
-    ];
-    
-      
-       return response()->json($array);
-    } 
+    public function showResponseFinal(Request $request)
+    {
+        $data = DB::table('requests')
+            ->select('idols.photo', 'idols.name' , 'idols.last_name' , 'idols.id AS id_idols' , 'idols.country','requests.id_google','responses.video_name' )
+            ->join('idols', 'idols.id', '=','requests.id_idols')
+            ->join('responses', 'requests.id', '=','responses.id_requests')
+            ->whereNotNull('responses.video_name')
+            ->where('requests.id_google', $request->id)
+            
+            ->get();
+        return response()->json($data);     
+    }
 }
